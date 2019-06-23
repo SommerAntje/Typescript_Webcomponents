@@ -1,9 +1,8 @@
 class Helloworld extends HTMLElement {
-    tooltipContainer: any;
+   private tooltipContainer: any;
 
     constructor() {
         super();
-        this.tooltipContainer;
     }
 
     connectedCallback() {
