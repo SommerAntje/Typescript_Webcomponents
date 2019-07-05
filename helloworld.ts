@@ -1,11 +1,12 @@
 class Helloworld extends HTMLElement {
-   private tooltipContainer: any;
+   private tooltipContainer:  ;
 
     constructor() {
         super();
     }
 
     connectedCallback() {
+        // method will be called when custom element has been connected to the document DOM for the first time
         const tooltipIcon = document.createElement('span');
         tooltipIcon.textContent = ' (?) ';
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
