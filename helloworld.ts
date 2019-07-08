@@ -1,12 +1,17 @@
 class Helloworld extends HTMLElement {
    private tooltipContainer: HTMLElement;
+   private tooltipText: string;
 
     constructor() {
         super();
+        this.tooltipText = "Hover Tooltip"
     }
 
     connectedCallback() {
-        // method will be called when custom element has been connected to the document DOM for the first time
+        if(this.hasAttribute('text')) {
+            this.tooltipText = this.getAttribute('text');
+        }
+
         const tooltipIcon = document.createElement('span');
         tooltipIcon.textContent = ' (?) ';
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
@@ -16,7 +21,7 @@ class Helloworld extends HTMLElement {
 
     private showToolTip() {
         this.tooltipContainer = document.createElement('div');
-        this.tooltipContainer.textContent = 'Hello World Webcomponent!';
+        this.tooltipContainer.textContent = this.tooltipText;
         this.appendChild(this.tooltipContainer);
     }
 
