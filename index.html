@@ -11,13 +11,13 @@
 
 <body>
     <template id="tooltip-template">
-        <span>(?)</span>
+       <slot>Default Text</slot><span>(?)</span>
     </template>
     <p>
         <uc-helloworld text="WebComponent Tooltip">Web Component</uc-helloworld>
     </p>
     <p>
-        <uc-helloworld>Web Component Tooltip</uc-helloworld>
+        <uc-helloworld></uc-helloworld>
     </p>
 </body>
 
