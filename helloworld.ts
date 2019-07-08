@@ -1,6 +1,7 @@
 class Helloworld extends HTMLElement {
    private tooltipContainer: HTMLElement;
    private tooltipText: string;
+   private template: HTMLTemplateElement;
 
     constructor() {
         super();
@@ -8,14 +9,14 @@ class Helloworld extends HTMLElement {
     }
 
     connectedCallback() {
+        this.template = document.querySelector('#tooltip-template');
+        this.shadowRoot.appendChild(this.template.content.cloneNode(true));
         if(this.hasAttribute('text')) {
             this.tooltipText = this.getAttribute('text');
         } else {
             this.tooltipText = "Default Hover Tooltip";
         }
-
-        const tooltipIcon = document.createElement('span');
-        tooltipIcon.textContent = ' (?) ';
+        const tooltipIcon = this.shadowRoot.querySelector('span');
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
         tooltipIcon.addEventListener('mouseleave', this.hideTooltip.bind(this)); // eventlistener pointer
         this.shadowRoot.appendChild(tooltipIcon);
