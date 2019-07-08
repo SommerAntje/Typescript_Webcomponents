@@ -4,6 +4,7 @@ class Helloworld extends HTMLElement {
 
     constructor() {
         super();
+        this.attachShadow({mode: 'open'});
     }
 
     connectedCallback() {
@@ -17,7 +18,7 @@ class Helloworld extends HTMLElement {
         tooltipIcon.textContent = ' (?) ';
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
         tooltipIcon.addEventListener('mouseleave', this.hideTooltip.bind(this)); // eventlistener pointer
-        this.appendChild(tooltipIcon);
+        this.shadowRoot.appendChild(tooltipIcon);
         this.style.position ="relative";
 
     }
@@ -25,7 +26,7 @@ class Helloworld extends HTMLElement {
     private showToolTip() {
         this.tooltipContainer = document.createElement('div');
         this.tooltipContainer.textContent = this.tooltipText;
-        this.appendChild(this.tooltipContainer);
+        this.shadowRoot.appendChild(this.tooltipContainer);
         this.tooltipContainer.style.backgroundColor = "black";
         this.tooltipContainer.style.color= "white";
         this.tooltipContainer.style.position= "absolute";
@@ -34,7 +35,7 @@ class Helloworld extends HTMLElement {
     }
 
     private hideTooltip() {
-        this.removeChild(this.tooltipContainer);
+        this.shadowRoot.removeChild(this.tooltipContainer);
     }
 
 }
