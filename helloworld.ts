@@ -1,5 +1,5 @@
 class Helloworld extends HTMLElement {
-   private tooltipContainer:  ;
+   private tooltipContainer: HTMLElement;
 
     constructor() {
         super();
