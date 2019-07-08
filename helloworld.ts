@@ -18,12 +18,19 @@ class Helloworld extends HTMLElement {
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
         tooltipIcon.addEventListener('mouseleave', this.hideTooltip.bind(this)); // eventlistener pointer
         this.appendChild(tooltipIcon);
+        this.style.position ="relative";
+
     }
 
     private showToolTip() {
         this.tooltipContainer = document.createElement('div');
         this.tooltipContainer.textContent = this.tooltipText;
         this.appendChild(this.tooltipContainer);
+        this.tooltipContainer.style.backgroundColor = "black";
+        this.tooltipContainer.style.color= "white";
+        this.tooltipContainer.style.position= "absolute";
+        this.tooltipContainer.style.zIndex= "10";
+        this.tooltipContainer.style.borderRadius="5%";
     }
 
     private hideTooltip() {
