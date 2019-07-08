@@ -4,12 +4,13 @@ class Helloworld extends HTMLElement {
 
     constructor() {
         super();
-        this.tooltipText = "Hover Tooltip"
     }
 
     connectedCallback() {
         if(this.hasAttribute('text')) {
             this.tooltipText = this.getAttribute('text');
+        } else {
+            this.tooltipText = "Default Hover Tooltip";
         }
 
         const tooltipIcon = document.createElement('span');
