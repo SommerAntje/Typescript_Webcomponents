@@ -1,7 +1,6 @@
 class Helloworld extends HTMLElement {
    private tooltipContainer: HTMLElement;
    private tooltipText: string;
-   private template: HTMLTemplateElement;
 
     constructor() {
         super();
