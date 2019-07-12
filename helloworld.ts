@@ -9,8 +9,20 @@ class Helloworld extends HTMLElement {
     }
 
     connectedCallback() {
-        this.template = document.querySelector('#tooltip-template');
-        this.shadowRoot.appendChild(this.template.content.cloneNode(true));
+        this.shadowRoot.innerHTML = `
+            <style>
+              div {
+                background-color: black;
+                background-radius: 5%;
+                color: #fff;
+                position: absolute;
+                z-index: 10;
+              }  
+            </style>
+            <slot>Default Text</slot>
+            <span>(?)</span>
+        `;
+
         if(this.hasAttribute('text')) {
             this.tooltipText = this.getAttribute('text');
         } else {
@@ -28,11 +40,6 @@ class Helloworld extends HTMLElement {
         this.tooltipContainer = document.createElement('div');
         this.tooltipContainer.textContent = this.tooltipText;
         this.shadowRoot.appendChild(this.tooltipContainer);
-        this.tooltipContainer.style.backgroundColor = "black";
-        this.tooltipContainer.style.color= "white";
-        this.tooltipContainer.style.position= "absolute";
-        this.tooltipContainer.style.zIndex= "10";
-        this.tooltipContainer.style.borderRadius="5%";
     }
 
     private hideTooltip() {
