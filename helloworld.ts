@@ -5,9 +5,6 @@ class Helloworld extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'});
-    }
-
-    connectedCallback() {
         this.shadowRoot.innerHTML = `
             <style>
               div {
@@ -21,18 +18,20 @@ class Helloworld extends HTMLElement {
             <slot>Default Text</slot>
             <span>(?)</span>
         `;
+    }
+
+    connectedCallback() {
 
         if(this.hasAttribute('text')) {
             this.tooltipText = this.getAttribute('text');
         } else {
             this.tooltipText = "Default Hover Tooltip";
         }
+
         const tooltipIcon = this.shadowRoot.querySelector('span');
         tooltipIcon.addEventListener('mouseenter', this.showToolTip.bind(this));
         tooltipIcon.addEventListener('mouseleave', this.hideTooltip.bind(this)); // eventlistener pointer
         this.shadowRoot.appendChild(tooltipIcon);
-        this.style.position ="relative";
-
     }
 
     private showToolTip() {
